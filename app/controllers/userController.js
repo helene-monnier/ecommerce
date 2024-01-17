@@ -9,16 +9,59 @@ const userController = {
 
     register: async (req, res) => {
         try {
-            // !! votre code à partir d'ici
+            // Je vérifie que les données récupérées sont valides
+            const {
+                firstname, lastname, email, password, passwordConfirm,
+            } = req.body;
+
+            // Je vérifie que aucun des champs n'est vide
+            if (!firstname || !lastname || !email || !password || !passwordConfirm) {
+                res.render('register', {
+                    errorMessage: 'Tous les champs sont obligatoires',
+                });
+                return;
+            }
+
             // verifier l'email avec le package npm email-validator
-
+            if (!emailValidator.validate(email)) {
+                res.render('register', {
+                  errorMessage: 'L\'email n\'est pas valide',
+                });
+                return;
+            }
+          
+            // Si je suis arrivé ici, c'est que toutes mes données sont valides
+            // Mon utilisateur peut avoir déjà un compte
+            const userWithSameEmail = await User.findOne({
+                where: {
+                email,
+                },
+            });
+        
+            if (userWithSameEmail) {
+                res.render('register', {
+                    errorMessage: 'Un utilisateur avec cet email existe déjà',
+                });
+                return;
+            }
             // verifier si password correspond à password confirm
-
+            if (password !== passwordConfirm) {
+                res.render('register', {
+                    errorMessage: 'Le mot de passe et la confirmation doivent être identiques',
+                });
+                return;
+            }
+          
             // hash password
-
-            // attribuer un rôle ici, le role customer.
+            const passwordHashed = await bcrypt.hash(password, 10);
 
             // sauvegarder user
+            await User.create({
+                name: `${firstname} ${lastname}`,
+                email,
+                password: passwordHashed,
+                role_id: 1, // attribuer un rôle ici, le role customer.
+            });
 
             // !! ne pas modifier cette ligne
             res.render('login', {
@@ -26,7 +69,7 @@ const userController = {
             });
         } catch (error) {
             console.log(error);
-            res.render('register', { error: error.message });
+            res.render('register', { error: error.errorMessage });
         }
     },
 

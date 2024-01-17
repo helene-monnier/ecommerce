@@ -3,11 +3,11 @@
 <section class="container mt-5 mb-5">
     <% if (locals.error) { %>
     <div class="alert alert-danger">
-        <p class="text-danger"><%= error %></p>
+        <p class="text-danger"><%= errorMessage %></p>
     </div>
-    <% } %> <% if (locals.errorMessage) { %>
+    <% } %> <% if (locals.message) { %>
     <div class="alert alert-success">
-        <p class="text-success"><%= errorMessage %></p>
+        <p class="text-success"><%= message %></p>
     </div>
     <% } %>
     <h1 class="large text-primary">Sign In</h1>
