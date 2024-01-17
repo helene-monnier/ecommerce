@@ -2,6 +2,45 @@ const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = require('../database');
 
 class Product extends Sequelize.Model {}
+
+Product.init(
+  {
+    category_id: {
+      type: DataTypes.INTEGER,
+    },
+
+    ref: {
+      type: DataTypes.STRING,
+      allowNull: false, 
+      unique: true,
+    },
+
+    image: {
+      type: DataTypes.STRING,
+      allowNull: true, 
+    },
+
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false, 
+      unique: true,
+    },
+
+    description: {
+      type: DataTypes.TEXT,
+    },
+
+    price: {
+      type: DataTypes.NUMBER,
+      allowNull: false, 
+    },
+  },
+
+  {
+    sequelize,
+    tableName: 'products',
+  }
+)
 /**
  * Voici les champs nécessaires pour faire le Model
  * category_id int
