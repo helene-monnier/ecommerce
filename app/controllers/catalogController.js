@@ -46,7 +46,21 @@ const catalogController = {
 
     product: async (req, res) => {
         // todo, récupérer le produit demandé en base de données.
-        res.render('product');
+         // Je suis sur une route paramètre avec un paramètre id
+        // Je le récupère depuis req.params
+        const { id } = req.params;
+        // todo, il faut récupérer la catégorie en fonction de l'id présent dans l'url et la passer à la vue
+        try {
+            const product = await Product.findByPk(id)
+
+            res.render('product', { 
+                product,
+            });
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Server Error');
+        }
     },
 
     cart: (req, res) => {
