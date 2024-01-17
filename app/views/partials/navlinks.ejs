@@ -3,7 +3,7 @@
         <a href="/shop">Shop</a>
     </li>
     <!--  Si pas authentifié : affiche un lien vers signup, sinon afficher un lien vers dashboard -->
-    <% if (!locals.user) { %>
+    <% if (!locals.userFounded) { %>
 
         <li>
             <a href="/register">Signup</a>
@@ -13,7 +13,7 @@
         </li>
     <% } else { %>
         <li>
-            <% if (locals.user.role.name === 'admin') { %>
+            <% if (locals.userFounded.role.name === 'admin') { %>
                 <a href="/dashboard">Admin</a>
             <% } else { %>
                 <a href="/profile">Votre profil</a>

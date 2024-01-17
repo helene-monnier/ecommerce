@@ -12,7 +12,7 @@ const isAdmin = require('../middlewares/isAdmin');
 // Page d'accueil
 router.get('/', catalogController.index);
 
-// !! page /shop, vous travaillez dans ce controller
+// page /shop
 router.get('/shop', catalogController.productsList);
 
 // Affichage d'une catégorie et des produits associés 
