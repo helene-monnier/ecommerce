@@ -40,7 +40,7 @@ const sessionController = {
             }
              
             // On ajoute user a la session
-            req.session.userId = userFounded.id;
+            req.session.user = userFounded;
             console.log(req.session.userId)
             console.log(userFounded)
             

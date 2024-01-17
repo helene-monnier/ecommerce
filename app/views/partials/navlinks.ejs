@@ -13,7 +13,7 @@
         </li>
     <% } else { %>
         <li>
-            <% if (locals.user.role.name === 'admin') { %>
+            <% if (locals.user.role?.name === 'admin') { %>
                 <a href="/dashboard">Admin</a>
             <% } else { %>
                 <a href="/profile">Votre profil</a>

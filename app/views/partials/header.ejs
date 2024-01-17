@@ -8,6 +8,10 @@
 
     <div class="hero container">
         <div class="hero-copy">
+            <% if (locals.user) { %>
+                <p>bonjour <%= locals.user.name %></p>
+            <% }  %>
+
             <h1>Le roi de la merguez a encore frappe</h1>
 
             <p>Des produits, Des categories, un panier</p>
