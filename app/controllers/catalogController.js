@@ -23,8 +23,25 @@ const catalogController = {
     },
 
     category: async (req, res) => {
+        // Je suis sur une route paramètre avec un paramètre id
+        // Je le récupère depuis req.params
+        const { id } = req.params;
         // todo, il faut récupérer la catégorie en fonction de l'id présent dans l'url et la passer à la vue
-        res.render('category');
+        try {
+            const category = await Category.findByPk(id, {
+                include : [{
+                    association: 'products',
+                }],
+            });
+
+            res.render('category', { 
+                category,
+            });
+
+        } catch (error) {
+            console.log(error);
+            res.status(500).send('Server Error');
+        }
     },
 
     product: async (req, res) => {
