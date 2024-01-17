@@ -56,12 +56,13 @@ const userController = {
             const passwordHashed = await bcrypt.hash(password, 10);
 
             // sauvegarder user
-            await User.create({
+            const user = await User.create({
                 name: `${firstname} ${lastname}`,
                 email,
                 password: passwordHashed,
                 role_id: 1, // attribuer un rôle ici, le role customer.
             });
+            console.log(user)
 
             // !! ne pas modifier cette ligne
             res.render('login', {

@@ -15,7 +15,6 @@
 
         <ul>
             <% categories.forEach(category => { %>
-            <!-- todo - Dynamiser cette liste -->
             <li>
                 <a href="/category/<%= category.id %>"> <%= category.name %> </a>
             </li>
@@ -25,8 +24,6 @@
 
     <div>
         <div class="products text-center">
-
-            <!-- todo - dynamiser cette liste -->
             <% products.forEach(product => { %>
             <div class="product">
                 <a href="/product/<%= product.id %>">
@@ -38,7 +35,6 @@
                 <div class="product-price">€<%= product.price %></div>
             </div>
             <% }) %>
-
         </div>
     </div>
 </div>

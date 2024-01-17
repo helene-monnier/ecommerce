@@ -5,6 +5,7 @@ const catalogController = require('./controllers/catalogController');
 const sessionController = require('./controllers/sessionController');
 const userController = require('./controllers/userController');
 const adminController = require('./controllers/adminController');
+const cartController = require('./controllers/cartController');
 
 const auth = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
@@ -22,7 +23,8 @@ router.get('/category/:id', catalogController.category);
 router.get('/product/:id', catalogController.product);
 
 // affichage du panier
-router.get('/cart', catalogController.cart);
+router.get('/cart', cartController.index);
+router.get('/cart/:id', cartController.addOrUpdate);
 
 // Affichage page formulaire de login
 router.get('/login', sessionController.index);

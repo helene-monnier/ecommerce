@@ -64,10 +64,6 @@ const catalogController = {
             res.status(500).send('Server Error');
         }
     },
-
-    cart: (req, res) => {
-        res.render('cart');
-    },
 };
 
 module.exports = catalogController;

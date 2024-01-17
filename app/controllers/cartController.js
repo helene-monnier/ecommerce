@@ -7,8 +7,8 @@ const cartController = {
 
     addOrUpdate: async (req, res) => {
         const productId = parseInt(req.params.productId);
-
         const productsInCart = req.session.cart.products;
+        
         const productToAdd = await Product.findOne({
             where: { id: productId },
         });
