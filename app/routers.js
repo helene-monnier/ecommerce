@@ -21,6 +21,9 @@ router.get('/category/:id', catalogController.category);
 // Page de détail d'un produit
 router.get('/product/:id', catalogController.product);
 
+// affichage du panier
+router.get('/cart', catalogController.cart);
+
 // Affichage page formulaire de login
 router.get('/login', sessionController.index);
 //!! Démarre une session user si user existe, vous travaillez dans ce controller
@@ -38,5 +41,7 @@ router.post('/register', userController.register);
 router.get('/profile', auth, userController.show);
 // admin avec chained middlewares
 router.get('/dashboard', [auth, isAdmin], adminController.index);
+
+
 
 module.exports = router;

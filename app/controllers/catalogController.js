@@ -1,13 +1,16 @@
 const { Category, Product } = require('../models');
+const Sequelize = require("sequelize");
 
 const catalogController = {
     index: async (req, res) => {
-        res.render('index');
+        const productsRandom = await Product.findAll({
+            order: Sequelize.literal('RANDOM()'),
+        });
+        res.render('index', { productsRandom});
     },
 
     productsList: async (req, res) => {
         try {
-            // todo, ici il faudra les vrais produits et catégories de la db
             const products = await Product.findAll();
             const categories = await Category.findAll();
 
@@ -26,7 +29,7 @@ const catalogController = {
         // Je suis sur une route paramètre avec un paramètre id
         // Je le récupère depuis req.params
         const { id } = req.params;
-        // todo, il faut récupérer la catégorie en fonction de l'id présent dans l'url et la passer à la vue
+        
         try {
             const category = await Category.findByPk(id, {
                 include : [{
@@ -45,11 +48,10 @@ const catalogController = {
     },
 
     product: async (req, res) => {
-        // todo, récupérer le produit demandé en base de données.
-         // Je suis sur une route paramètre avec un paramètre id
+        // Je suis sur une route paramètre avec un paramètre id
         // Je le récupère depuis req.params
         const { id } = req.params;
-        // todo, il faut récupérer la catégorie en fonction de l'id présent dans l'url et la passer à la vue
+
         try {
             const product = await Product.findByPk(id)
 
