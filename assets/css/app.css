@@ -731,6 +731,7 @@ footer {
 
 .cart-section .cart-table-row .cart-table-description {
     color: #919191;
+    text-align: right;
 }
 
 .cart-section .cart-table-row .cart-options {

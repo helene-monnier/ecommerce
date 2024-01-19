@@ -29,7 +29,12 @@
         <a href="/cart">
             Panier
             <span class="cart-count">
+                <% if(locals.cart?.products.length  > 0) { %>
+                    <span><%= cartCount %> </span>
+               <% } else { %>
                 <span><%= 0 %> </span>
+               <% }  %>
+                
             </span>
         </a>
     </li>

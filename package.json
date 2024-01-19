@@ -4,7 +4,7 @@
     "description": "Parcours Saison 5",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon"
+        "dev": "node --watch index.js"
     },
     "repository": {
         "type": "git",
@@ -19,6 +19,7 @@
     "homepage": "https://github.com/O-clock-FS-JS/refonte-parcours-S05#readme",
     "dependencies": {
         "bcrypt": "^5.1.0",
+        "connect-pg-simple": "^9.0.1",
         "dotenv": "^16.0.3",
         "ejs": "^3.1.9",
         "email-validator": "^2.0.4",

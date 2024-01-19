@@ -58,7 +58,10 @@ const sessionController = {
     logout: (req, res) => {
         // !! Votre code ici
         // Je détruis la session
-        req.session.destroy();
+        // plusieurs possibilités
+        // req.session.user = null; // enlève les éléments de la session relatif au user
+        delete req.session.user; // supprime l'objet user de la session
+        // req.session.destroy(); // expérimentale 
         res.redirect('/');
     },
 };

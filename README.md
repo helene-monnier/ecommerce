@@ -36,4 +36,3 @@ J'ai ensuite terminé le projet avec tout ce que je trouvais utile :
 - la page panier
 - la page mon profil
 - l'espace admin
-# merguez

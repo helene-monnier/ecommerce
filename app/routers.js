@@ -10,6 +10,12 @@ const cartController = require('./controllers/cartController');
 const auth = require('../middlewares/auth');
 const isAdmin = require('../middlewares/isAdmin');
 
+const initCart = require('../middlewares/initCart');
+const cartCalculations = require('../middlewares/cartCalculations');
+
+// j'initialise le panier
+router.use(initCart, cartCalculations);
+
 // Page d'accueil
 router.get('/', catalogController.index);
 
@@ -23,8 +29,13 @@ router.get('/category/:id', catalogController.category);
 router.get('/product/:id', catalogController.product);
 
 // affichage du panier
-router.get('/cart', cartController.index);
-router.get('/cart/:id', cartController.addOrUpdate);
+router.get('/cart', cartCalculations, cartController.index);
+// mettre à jour le panier
+router.post('/cart/:productId', cartCalculations, cartController.addOrUpdate);
+// elever un élément du panier
+router.get('/cart/remove/:productId', cartCalculations, cartController.remove);
+// vider le panier
+router.get('/cart/destroy', cartController.destroy);
 
 // Affichage page formulaire de login
 router.get('/login', sessionController.index);

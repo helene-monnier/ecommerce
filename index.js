@@ -9,18 +9,13 @@ const path = require('path');
 const router = require('./app/routers');
 const errorHandlers = require('./middlewares/errorHandlers');
 const loadUserToLocals = require('./middlewares/loadUserToLocals');
+const middlewareSession = require('./middlewares/middlewareSession');
 
 // Body parser
 app.use(express.urlencoded({ extended: true }));
 
-// Charger les données de la sessions sur `req.session` et `res.locals`
-app.use(
-    session({
-        saveUninitialized: true,
-        resave: true,
-        secret: 'Un secret pour signer les id de sessions',
-    })
-);
+app.use(middlewareSession);
+
 app.use(loadUserToLocals);
 
 // Setup view engine

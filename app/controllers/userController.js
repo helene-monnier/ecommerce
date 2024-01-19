@@ -27,7 +27,7 @@ const userController = {
                 res.render('register', {
                   errorMessage: 'L\'email n\'est pas valide',
                 });
-                return;
+                return; // on s'arrête là en cas d'erreur
             }
           
             // Si je suis arrivé ici, c'est que toutes mes données sont valides
@@ -60,14 +60,18 @@ const userController = {
                 name: `${firstname} ${lastname}`,
                 email,
                 password: passwordHashed,
-                role_id: 1, // attribuer un rôle ici, le role customer.
+                // role_id: 1, // attribuer un rôle ici, le role customer.
             });
-            console.log(user)
+            
+            // attribuer un rôle ici, le role customer.
+            // https://sequelize.org/docs/v6/core-concepts/assocs/#special-methodsmixins-added-to-instances
+            const customerRole = await Role.findByPk(1);
+            user.setRole(customerRole);
 
-            // !! ne pas modifier cette ligne
             res.render('login', {
                 message: 'Vous pouvez maintenant vous connecter !',
             });
+
         } catch (error) {
             console.log(error);
             res.render('register', { error: error.errorMessage });
