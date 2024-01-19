@@ -1,4 +1,5 @@
 const Product = require('../models/Product');
+const User = require('../models/User');
 
 const cartController = {
     index: (req, res) => {
@@ -12,6 +13,15 @@ const cartController = {
         const productToAdd = await Product.findOne({
             where: { id: productId },
         });
+
+        // si l'user n'est pas connecté, on l'envoie vers la page de connexion
+        const user = req.session.user
+
+        if (!user){
+            res.render('login', {
+            })
+            return;
+        }
 
         // Si on a déjà le produit dans le panier , on met à jour la quantité, sinon on ajoute le produit au panier
         const found = productsInCart.find(
