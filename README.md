@@ -19,14 +19,14 @@ Les objectifs de cette auto-évaluation étaient de :
 
 ## Réalisation
 
-En 3h, j'ai donc du :
+En 3h, j'ai donc:
 
-- initialiser le projet
-- créer la base de donnée, l'utilisateur et se connecter à la base de données en faisant le lien avec le fichier sql
-- compléter les modèles sequelize et les associations
-- dynamiser les pages shop, categories et products
-- faire fonctionner la route /logout
-- faire la méthode 'register' de 'userController'
+- initialisé le projet
+- créé la base de donnée, l'utilisateur et se connecter à la base de données en faisant le lien avec le fichier sql
+- complété les modèles sequelize et les associations
+- dynamisé les pages shop, categories et products
+- fais fonctionner la route /logout
+- fais la méthode 'register' de 'userController'
 
 ## Suite
 
